@@ -14,7 +14,9 @@ export class PetComponent implements OnInit {
   constructor(private petService: PetService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.pet = this.petService.getPet(+this.route.snapshot.params.id);
+    this.petService.getPet(+this.route.snapshot.params.id).subscribe((pet) => {
+      this.pet = pet;
+    });
   }
 
 }
