@@ -1,0 +1,15 @@
+<div class="container" style="margin-top: 25px">
+    <div class="row text-center">
+      <div class="col-md-8 mx-auto">
+        <div>
+         <a [routerLink]="['/pets', pet.id]"> <img [src]="pet.image" style="max-width: 500px; border-radius: 5px 5px 5px  5px;"></a>
+          <div>
+            <h4 style="margin-top: 10px">{{pet.name}}</h4>
+            <p>Status: <span [ngStyle]="{color: pet.status === 'Alive' ? 'green' : 'red'}">{{pet.status}}</span></p>
+            <p>{{pet.description}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
