@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const petSchema = mongoose.Schema({
     name: String,
     description: String,
+    funfact: String,
     brith: Date,
     death: Date,
     status: String,
