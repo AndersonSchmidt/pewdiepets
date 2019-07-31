@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const mongoose = require('mongoose');
+const Pet = require('./models/pet.js');
 
 pets = [
     {
@@ -45,12 +47,19 @@ pets = [
       name: 'Boat Cow',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
       status: 'Dead',
-      image: 'https://vignette.wikia.nocookie.net/pewdiepieminecraft/images/2/27/BC4636CD-48B0-4F4F-8802-42828ED4D0FF.png/revision/latest?cb=20190708131531'
+      image: '/images\1564590294611-200px-Wolf_%28Tamed%29.png'
     }
   ];
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
+
+mongoose.connect('', {useNewUrlParser: true})
+.then(() => {
+  console.log('Connected to the database');
+}).catch((err) => {
+  console.log('Connection failed! ' + err);
+});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -74,8 +83,23 @@ app.get("/api/pets/:id", (req, res) => {
 });
 
 app.post("/api/pets", multer({storage: storage}).single('image'), (req, res) => {
-  console.log(req.body);
-  res.send("hello");
+  const pet = new Pet({
+    name: req.body.name,
+    description: req.body.description,
+    funfact: req.body.funfact,
+    birth: req.body.birh,
+    death: req.body.death,
+    status: req.body.status,
+    image: req.file.path.replace('public\\', '/')
+  });
+  
+  Pet.create(pet, (err, pet) => {
+    if(err){
+      console.log(err);
+    }else{
+      res.status(201);
+    }
+  });
 });
 
 

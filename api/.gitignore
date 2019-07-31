@@ -2,3 +2,5 @@
 node_modules/
 # images
 public/images/
+# enviroment variables
+.env
