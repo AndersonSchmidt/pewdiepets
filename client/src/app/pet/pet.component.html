@@ -5,10 +5,15 @@
          <a [routerLink]="['/pets', pet._id]"> <img [src]="pet.image" style="max-width: 500px; border-radius: 5px 5px 5px  5px;"></a>
           <div>
             <h4 style="margin-top: 10px">{{pet.name}}</h4>
-            <p>Status: <span [ngStyle]="{color: pet.status === 'alive' ? 'green' : 'red'}">{{pet.status}}</span></p>
-            <p>{{pet.description}}</p>
-            <span>Birth: {{pet.birth}}</span>
+            <p><strong>Status: </strong> <span [ngStyle]="{color: pet.status === 'alive' ? 'green' : 'red'}">{{pet.status}}</span></p>
+            <hr>
+            <p class="text-left">{{pet.description}}</p>
+            <p class="text-left"><strong>Fun Fact:</strong> {{pet.funfact}}</p>
+            <p class="text-left"><strong>Birth:</strong> {{pet.birth}}</p>
+            <p class="text-left" *ngIf="pet.death != 'undefined'"><strong>Death:</strong> {{pet.death}}</p>
           </div>
+          <hr>
+          <br>
         </div>
       </div>
 
