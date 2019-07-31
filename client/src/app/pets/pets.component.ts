@@ -10,11 +10,19 @@ import { Pet } from '../pet.model';
 export class PetsComponent implements OnInit {
 
   pets: Pet[];
+  petsCopy: Pet[];
   constructor(private petService: PetService) { }
 
   ngOnInit() {
     this.petService.getPets().subscribe((pets) => {
       this.pets = pets;
+      this.petsCopy = pets;
+    });
+
+    this.petService.search.subscribe((name) => {
+      this.pets = this.petsCopy.filter((pet) => {
+        return pet.name.match(new RegExp(name, 'i'));
+      });
     });
   }
 
