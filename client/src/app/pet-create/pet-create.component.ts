@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PetService } from '../pet.service';
+import { Pet } from '../pet.model';
 
 @Component({
   selector: 'app-pet-create',
@@ -7,13 +9,21 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./pet-create.component.css']
 })
 export class PetCreateComponent implements OnInit {
+  image: File;
 
-  constructor() { }
+  constructor(private petService: PetService) { }
 
   ngOnInit() {
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  onFileChange(event) {
+    this.image = event.target.files[0];
   }
+
+  onSubmit(form: NgForm) {
+    form.value.image = this.image;
+    this.petService.addPet(form.value).subscribe();
+    form.reset();
+  }
+
 }

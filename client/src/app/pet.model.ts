@@ -3,8 +3,8 @@ export class Pet {
   name: string;
   description: string;
   funfact: string;
-  birth: Date;
-  death: Date;
+  birth: string;
+  death: string;
   status: string;
-  image: string;
+  image: string | File;
 }
