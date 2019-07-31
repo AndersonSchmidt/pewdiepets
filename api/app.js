@@ -62,6 +62,8 @@ mongoose.connect('mongodb+srv://anderson:'+ process.env.MONGO_ATLAS_PW +'@cluste
   console.log('Connection failed! ' + err);
 });
 
+app.use(express.static('public'));
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/images');
@@ -91,7 +93,7 @@ app.post("/api/pets", multer({storage: storage}).single('image'), (req, res) => 
     birth: req.body.birh,
     death: req.body.death,
     status: req.body.status,
-    image: req.file.path.replace('public\\', '/')
+    image: req.protocol + '://' + req.get("host") + '/images/' + req.file.filename
   });
   
   Pet.create(pet, (err, pet) => {
