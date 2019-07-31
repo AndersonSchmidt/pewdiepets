@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const multer = require('multer');
 
 pets = [
     {
@@ -48,10 +50,20 @@ pets = [
   ];
 
 app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
 
 app.get("/api/pets", (req, res) => {
     res.json(pets);
-})
+});
 
 app.get("/api/pets/:id", (req, res) => {
     let pet = pets.filter((pet) => {
@@ -59,8 +71,14 @@ app.get("/api/pets/:id", (req, res) => {
     })[0];
 
     res.json(pet);
-})
+});
+
+app.post("/api/pets", multer({storage: storage}).single('image'), (req, res) => {
+  console.log(req.body);
+  res.send("hello");
+});
+
 
 app.listen('3000', () => {
     console.log("API is running");
-})
+});
