@@ -11,7 +11,7 @@ export class PetService {
 
   search = new Subject<string>();
 
-  getPet(id: number) {
+  getPet(id: string) {
     return this.http.get<Pet>('http://localhost:3000/api/pets/' + id);
   }
 

@@ -1,5 +1,5 @@
 export class Pet {
-  id: number;
+  _id: number;
   name: string;
   description: string;
   funfact: string;
