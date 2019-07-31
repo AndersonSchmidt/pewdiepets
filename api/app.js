@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const mongoose = require('mongoose');
 const Pet = require('./models/pet.js');
+require('dotenv').config();
 
 pets = [
     {
@@ -54,7 +55,7 @@ pets = [
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('', {useNewUrlParser: true})
+mongoose.connect('mongodb+srv://anderson:'+ process.env.MONGO_ATLAS_PW +'@cluster0-l3zqp.mongodb.net/pewdiepets?retryWrites=true&w=majority', {useNewUrlParser: true})
 .then(() => {
   console.log('Connected to the database');
 }).catch((err) => {
