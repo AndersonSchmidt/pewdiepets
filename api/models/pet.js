@@ -4,7 +4,7 @@ const petSchema = mongoose.Schema({
     name: String,
     description: String,
     funfact: String,
-    brith: String,
+    birth: String,
     death: String,
     status: String,
     image: String,

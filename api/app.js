@@ -35,7 +35,6 @@ app.get("/api/pets", (req, res) => {
 });
 
 app.get("/api/pets/:id", (req, res) => {
-  console.log(req.params.id);
   Pet.findById(req.params.id).then(pet => {
     res.status(200).json(pet);
   });
@@ -46,7 +45,7 @@ app.post("/api/pets", multer({storage: storage}).single('image'), (req, res) => 
     name: req.body.name,
     description: req.body.description,
     funfact: req.body.funfact,
-    birth: req.body.birh,
+    birth: req.body.birth,
     death: req.body.death,
     status: req.body.status,
     image: req.protocol + '://' + req.get("host") + '/images/' + req.file.filename
