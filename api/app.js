@@ -31,12 +31,16 @@ const storage = multer.diskStorage({
 app.get("/api/pets", (req, res) => {
   Pet.find().then(pets => {
     res.status(200).json(pets);
+  }).catch(err => {
+    console.log(err);
   });
 });
 
 app.get("/api/pets/:id", (req, res) => {
   Pet.findById(req.params.id).then(pet => {
     res.status(200).json(pet);
+  }).catch(err => {
+    console.log(err);
   });
 });
 
