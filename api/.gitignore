@@ -4,3 +4,6 @@ node_modules/
 public/images/
 # environment variables
 .env
+
+# IDE - VSCode
+.vscode/*
