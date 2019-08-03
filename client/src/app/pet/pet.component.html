@@ -1,21 +1,25 @@
-<div class="container" style="margin-top: 25px">
-    <div class="row text-center">
-      <div class="col-md-8 mx-auto">
+<div class="d-flex justify-content-center" style="margin-top: 50px" *ngIf="!pet">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div class="container" style="margin-top: 25px" *ngIf="pet">
+  <div class="row text-center">
+    <div class="col-md-8 mx-auto">
+      <div>
+        <a [routerLink]="['/pets', pet._id]"> <img [src]="pet.image" style="max-width: 500px; border-radius: 5px 5px 5px  5px;"></a>
         <div>
-         <a [routerLink]="['/pets', pet._id]"> <img [src]="pet.image" style="max-width: 500px; border-radius: 5px 5px 5px  5px;"></a>
-          <div>
-            <h4 style="margin-top: 10px">{{pet.name}}</h4>
-            <p><strong>Status: </strong> <span [ngStyle]="{color: pet.status === 'alive' ? 'green' : 'red'}">{{pet.status}}</span></p>
-            <hr>
-            <p class="text-left">{{pet.description}}</p>
-            <p class="text-left"><strong>Fun Fact:</strong> {{pet.funfact}}</p>
-            <p class="text-left"><strong>Birth:</strong> {{pet.birth}}</p>
-            <p class="text-left" *ngIf="pet.death != 'undefined'"><strong>Death:</strong> {{pet.death}}</p>
-          </div>
+          <h4 style="margin-top: 10px">{{pet.name}}</h4>
+          <p><strong>Status: </strong> <span [ngStyle]="{color: pet.status === 'alive' ? 'green' : 'red'}">{{pet.status}}</span></p>
           <hr>
-          <br>
+          <p class="text-left">{{pet.description}}</p>
+          <p class="text-left"><strong>Fun Fact:</strong> {{pet.funfact}}</p>
+          <p class="text-left"><strong>Birth:</strong> {{pet.birth}}</p>
+          <p class="text-left" *ngIf="pet.death != 'undefined'"><strong>Death:</strong> {{pet.death}}</p>
         </div>
+        <hr>
+        <br>
       </div>
-
     </div>
   </div>
+</div>
