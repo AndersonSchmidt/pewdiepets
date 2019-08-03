@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
   }
 });
 
-app.get("/api/pets", (req, res) => {
+app.get("/", (req, res) => {
   Pet.find({active: true}).then(pets => {
     res.status(200).json(pets);
   }).catch(err => {
@@ -36,7 +36,7 @@ app.get("/api/pets", (req, res) => {
   });
 });
 
-app.get("/api/pets/:id", (req, res) => {
+app.get("/:id", (req, res) => {
   Pet.findById(req.params.id).then(pet => {
     res.status(200).json(pet);
   }).catch(err => {
@@ -44,7 +44,7 @@ app.get("/api/pets/:id", (req, res) => {
   });
 });
 
-app.post("/api/pets", multer({storage: storage}).single('image'), (req, res) => {
+app.post("/", multer({storage: storage}).single('image'), (req, res) => {
   const pet = new Pet({
     name: req.body.name,
     description: req.body.description,
@@ -65,6 +65,6 @@ app.post("/api/pets", multer({storage: storage}).single('image'), (req, res) => 
 });
 
 
-app.listen('3000', () => {
+app.listen('8081', () => {
     console.log("API is running");
 });

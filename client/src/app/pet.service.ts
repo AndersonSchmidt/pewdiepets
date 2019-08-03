@@ -12,11 +12,11 @@ export class PetService {
   search = new Subject<string>();
 
   getPet(id: string) {
-    return this.http.get<Pet>('http://pewdiepets.us-east-2.elasticbeanstalk.com/api/pets/' + id);
+    return this.http.get<Pet>('http://localhost:8081/' + id);
   }
 
   getPets() {
-    return this.http.get<Pet[]>('http://pewdiepets.us-east-2.elasticbeanstalk.com/api/pets');
+    return this.http.get<Pet[]>('http://localhost:8081');
   }
 
   addPet(pet: Pet) {
@@ -29,6 +29,6 @@ export class PetService {
     petData.append('status', pet.status);
     petData.append('image', pet.image);
 
-    return this.http.post('http://pewdiepets.us-east-2.elasticbeanstalk.com/api/pets', petData);
+    return this.http.post('http://localhost:8081', petData);
   }
 }
