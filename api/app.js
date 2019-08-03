@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
 });
 
 app.get("/", (req, res) => {
-  Pet.find({active: true}).then(pets => {
+  Pet.find().then(pets => {
     res.status(200).json(pets);
   }).catch(err => {
     console.log(err);
