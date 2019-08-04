@@ -47,7 +47,7 @@
 
         <div class="form-group">
           <input type="file" id="image" style="display: none" name="image" required ngModel (change)="onFileChange($event)">
-          <label for="image" class="btn btn-block" style="cursor: pointer; background-color: blanchedalmond; color: gray">Image</label>
+          <label for="image" class="btn btn-block" style="cursor: pointer; background-color: blanchedalmond; color: gray">{{image ? image.name : 'Image'}}</label>
         </div>
 
         <button class="btn btn-outline-primary btn-block" [disabled]="form.invalid" data-toggle="modal" data-target="#exampleModal">Submit</button>
