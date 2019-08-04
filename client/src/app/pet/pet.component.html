@@ -16,6 +16,7 @@
           <p class="text-left"><strong>Fun Fact:</strong> {{pet.funfact}}</p>
           <p class="text-left"><strong>Birth:</strong> {{pet.birth}}</p>
           <p class="text-left" *ngIf="pet.death != 'undefined'"><strong>Death:</strong> {{pet.death}}</p>
+          <p class="text-left"><strong>Twitter: </strong><a href="https://twitter.com/{{pet.twitter}}">@{{pet.twitter}}</a></p>
         </div>
         <hr>
         <br>

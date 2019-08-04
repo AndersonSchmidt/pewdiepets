@@ -28,6 +28,7 @@ export class PetService {
     petData.append('death', pet.death);
     petData.append('status', pet.status);
     petData.append('image', pet.image);
+    petData.append('twitter', pet.twitter);
 
     return this.http.post('http://localhost:8081', petData);
   }

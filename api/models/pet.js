@@ -8,7 +8,8 @@ const petSchema = mongoose.Schema({
     death: String,
     status: String,
     image: String,
-    active: {type: Boolean, default: false}
+    active: {type: Boolean, default: false},
+    twitter: String
 });
 
 module.exports = mongoose.model('Pet', petSchema);

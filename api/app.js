@@ -52,6 +52,7 @@ app.post("/", multer({storage: storage}).single('image'), (req, res) => {
     birth: req.body.birth,
     death: req.body.death,
     status: req.body.status,
+    twitter: req.body.twitter,
     image: req.protocol + '://' + req.get("host") + '/images/' + req.file.filename
   });
   

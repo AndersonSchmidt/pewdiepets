@@ -7,4 +7,5 @@ export class Pet {
   death: string;
   status: string;
   image: string | File;
+  twitter: string;
 }
