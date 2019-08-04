@@ -39,11 +39,11 @@
         </div>
 
         <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">@</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Twitter" name="twitter" required ngModel #twitter="ngModel" [ngClass]="{invalid: twitter.invalid && twitter.touched}">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
           </div>
+          <input type="text" class="form-control" placeholder="Twitter" name="twitter" required ngModel #twitter="ngModel" [ngClass]="{invalid: twitter.invalid && twitter.touched}">
+        </div>
 
         <div class="form-group">
           <input type="file" id="image" style="display: none" name="image" required ngModel (change)="onFileChange($event)">
