@@ -7,7 +7,7 @@
   <div class="row text-center">
     <div class="col-md-8 mx-auto">
       <div>
-        <a [routerLink]="['/pets', pet._id]"> <img [src]="pet.image" style="max-width: 500px; border-radius: 5px 5px 5px  5px;"></a>
+        <a [routerLink]="['/pets', pet._id]"> <img [src]="pet.image" style="max-width: 100%; border-radius: 5px 5px 5px  5px;"></a>
         <div>
           <h4 style="margin-top: 10px">{{pet.name}}</h4>
           <p>Status: <strong><span [ngStyle]="{color: pet.status === 'alive' ? '#7FAF1B' : (pet.status === 'dead' ? '#FF4040' : '#FF9900')}">{{pet.status}}</span></strong></p>
