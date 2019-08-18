@@ -29,6 +29,12 @@ const storage = multer.diskStorage({
 });
 
 app.get("/", (req, res) => {
+  console.log('');
+  console.log('====================GET PETS====================');
+  console.log('');
+  console.log('Request Header: ');
+  console.log(req.headers);
+
   Pet.find().then(pets => {
     res.status(200).json(pets);
   }).catch(err => {
@@ -37,6 +43,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:id", (req, res) => {
+  console.log('');
+  console.log('====================GET PET====================');
+  console.log('');
+  console.log('PET ID: ' + req.params.id);
+  console.log('');
+
   Pet.findById(req.params.id).then(pet => {
     res.status(200).json(pet);
   }).catch(err => {
@@ -45,6 +57,9 @@ app.get("/:id", (req, res) => {
 });
 
 app.post("/", multer({storage: storage}).single('image'), (req, res) => {
+  console.log('');
+  console.log('====================POST PET====================');
+
   const pet = new Pet({
     name: req.body.name,
     description: req.body.description,
@@ -56,10 +71,16 @@ app.post("/", multer({storage: storage}).single('image'), (req, res) => {
     image: req.protocol + '://' + req.get("host") + '/images/' + req.file.filename
   });
   
+  console.log('');
+  console.log('PET:');
+  console.log(pet);
+  console.log('');
+  
   Pet.create(pet, (err, pet) => {
     if(err){
       console.log(err);
     }else{
+      console.log('PET CREATED SUCCESSFULLY');
       res.status(201);
     }
   });
